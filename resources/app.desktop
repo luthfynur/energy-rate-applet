@@ -1,0 +1,14 @@
+[Desktop Entry]
+Name=Energy Rate Applet
+Comment=Energy rate text applet for cosmic desktop
+Type=Application
+Icon=com.github.luthfynur.energy-rate-applet
+Exec=energy-rate-applet %F
+Terminal=false
+StartupNotify=true
+Categories=COSMIC
+Keywords=COSMIC
+NoDisplay=true
+X-CosmicApplet=true
+X-CosmicHoverPopup=Auto
+MimeType=

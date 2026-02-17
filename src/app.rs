@@ -19,8 +19,6 @@ pub struct AppModel {
     popup: Option<Id>,
     /// Configuration data that persists between application runs.
     config: Config,
-    /// Example row toggler.
-    example_row: bool,
     energy_rate: String,
 }
 
@@ -148,8 +146,8 @@ impl cosmic::Application for AppModel {
     /// This view should emit messages to toggle the applet's popup window, which will
     /// be drawn using the `view_window` method.
     fn view(&self) -> Element<'_, Self::Message> {
-        let text = self.core.applet.text(&self.energy_rate);
-        let padding = cosmic::iced::Padding { top: 0.0 , right: 10.0, bottom: 0.0, left: 10.0 };
+        let text = self.core.applet.text(&self.energy_rate).size(15.0);
+        let padding = iced::Padding { top: 1.0 , right: 5.0, bottom: 1.0, left: 5.0 };
         let container: cosmic::widget::Container<Message, Theme>  = cosmic::widget::container(text).padding(padding);
         self.core.applet.autosize_window(container).into()
     }
@@ -170,7 +168,6 @@ fn get_energy_rate() -> String {
         let stdout = String::from_utf8_lossy(&output.stdout);
         for line in stdout.lines() {
             if line.trim_start().starts_with("energy-rate:") {
-                eprintln!("{}", line.replace("energy-rate:", "").trim());
                 return format!("Energy Rate: {}",line.replace("energy-rate:", "").trim());
             }
         }
